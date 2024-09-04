@@ -9,17 +9,7 @@ describe("Escrow", () => {
   let buyer, seller;
   let realEstate, escrow;
 
-  describe("Deployment", async () => {
-    it("Returns NFT address", async () => {});
-
-    it("Returns seller", async () => {});
-
-    it("Returns inspector", async () => {});
-
-    it("Returns render", async () => {});
-  });
-
-  it("saves the address", async () => {
+  beforeEach(async () => {
     // setup accounts
     [buyer, seller, inspector, lender] = await ethers.getSigners();
 
@@ -44,11 +34,23 @@ describe("Escrow", () => {
       inspector.address,
       lender.address
     );
-
-    const result = await escrow.nftAddress();
-    expect(result).to.be.equal(realEstate.address);
-
-    result = await escrow.seller();
-    expect(result).to.be.equal(seller.address);
   });
+
+  describe("Deployment", async () => {
+
+    it("Returns NFT address", async () => {
+      const result = await escrow.nftAddress();
+      expect(result).to.be.equal(realEstate.address);
+    });
+
+    it("Returns seller", async () => {
+      const result = await escrow.seller();
+      expect(result).to.be.equal(seller.address);
+    });
+
+    it("Returns inspector", async () => {});
+
+    it("Returns render", async () => {});
+  });
+
 });
