@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 interface IERC721 {
@@ -28,15 +28,18 @@ contract Escrow {
         lender = _lender;
     }
 
-    function list(uint256 _nftID, uint256 _purchasePrice, uint256 _escrowAmount, uint256 _buyer) public {
-        // transfer NFT from seller to this contact 
+    function list(
+        uint256 _nftID, 
+        uint256 _purchasePrice, 
+        uint256 _escrowAmount, 
+        address _buyer  // Changed to address
+    ) public {
+        // Transfer NFT from seller to this contract 
         IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
 
         isListed[_nftID] = true;
         purchasePrice[_nftID] = _purchasePrice;
         escrowAmount[_nftID] = _escrowAmount;
-        buyer[_nftID] = msg.sender;
-
+        buyer[_nftID] = _buyer;  // Assign the passed buyer address
     }
-
 }
