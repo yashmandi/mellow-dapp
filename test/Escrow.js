@@ -116,4 +116,12 @@ describe("Escrow", () => {
     })
   })
 
+  describe('Approval', () => {
+    it('Updates approval status', async() => {
+      let transaction = await escrow.connect(buyer).approveSale(1);
+      await transaction.wait()
+
+      transaction = await escrow
+    })
+  })
 });
