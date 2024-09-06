@@ -97,4 +97,9 @@ describe("Escrow", () => {
       expect(result).to.be.equal(tokens(5));
     });
   });
+
+  describe('Deposits', () => {
+    it('Updates contract balance')
+  })
+
 });
