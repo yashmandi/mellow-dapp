@@ -12,12 +12,12 @@ contract Escrow {
     address public lender;
 
     modifier onlyBuyer(uint256 _nftID) {
-        require(msg.sender = buyer[_nftID], "Only buyer can call this method.");
+        require(msg.sender == buyer[_nftID], "Only buyer can call this method.");
         _;
     }
 
     modifier onlySeller() {
-        require(msg.sender = seller, "Only seller can sell this method.");
+        require(msg.sender == seller, "Only seller can sell this method.");
         _;
     }
 
