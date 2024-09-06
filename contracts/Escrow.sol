@@ -43,7 +43,7 @@ contract Escrow {
         uint256 _purchasePrice, 
         uint256 _escrowAmount, 
         address _buyer  // Changed to address
-    ) public {
+    ) public payable onlySeller {
         // Transfer NFT from seller to this contract 
         IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
 
@@ -56,6 +56,12 @@ contract Escrow {
     // put under contract (only buyer payable escrow)
     function depositEarnest(uint256 _nftID) public payable onlyBuyer(_nftID) {
         require (msg.value >= escrowAmount[_nftID]);
+    }
+
+    receive() external payable{}
+
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
     }
 
 }
